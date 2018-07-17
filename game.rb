@@ -5,41 +5,58 @@ require_relative 'board.rb'
 
 # Ceci est la classe du jeu entier
 class Game
-	attr_accessor :player1, :player2, :board
+  attr_accessor :player1, :player2, :board
 
-	def initialize
-		puts "Bienvenu dans Tic-Tac-Toe !! "
-		puts "-----------------------------"
-		puts "Nom du joueur 1 : \n |>"
-		play1 = gets.chomp
-		@player1 = Player.new(play1,'x')
-		puts "Nom du joueur 2 : \n |>"
-		play2 = gets.chomp
-		@player2 = Player.new(play2,'o')
-		@board = Board.new
-	end
+  def initialize
+    puts '----------------------------------'
+    puts '-- Bienvenu dans Tic-Tac-Toe !! --'
+    puts '----------------------------------'
+    puts 'Nom du joueur 1 : \n |>'
+    play1 = gets.chomp
+    @player1 = Player.new(play1, 'x')
+    puts 'Nom du joueur 2 : \n |>'
+    play2 = gets.chomp
+    @player2 = Player.new(play2, 'o')
+    @board = Board.new
+  end
 
-	def launch
-		i = 1
-		while i <= 9
-			if i.odd?
-				@player1 # C'est lui qui joue
-				puts "#{@player1.name} veuillez choisir votre case : \n |> "
-				@board.conversion(gets.chomp.to_i)
-				@board.grid[@board.abs][@board.ord].value(@player1.symb)
-				@board.to_s
-				i += 1	
-			else
-				@player2 # c'est le joueur 2 qui joue
-				puts "#{@player2.name} veuillez choisir votre case : \n |> "
-				@board.conversion(gets.chomp.to_i)
-				@board.grid[@board.abs][@board.ord].value(@player2.symb)
-				@board.to_s
-				i += 1
-			end
-		end
-	end
+  def player1_play
+    puts "#{@player1.name} veuillez choisir votre case : \n |> "
+    @board.conversion(gets.chomp.to_i)
+    @board.grid(@board.abs, @board.ord, @player1.symb)
+  end
 
+  def player2_play
+    puts "#{@player2.name} veuillez choisir votre case : \n |> "
+    @board.conversion(gets.chomp.to_i)
+    @board.grid(@board.abs, @board.ord, @player2.symb)
+  end
+
+  def how_to
+    puts '----------------------------------'
+    puts '--   Type one of these figures: --'
+    puts '----------------------------------'
+    puts '            1 | 2 | 3'
+    puts '           ------------'
+    puts '            4 | 5 | 6'
+    puts '           ------------'
+    puts '            7 | 8 | 9'
+  end
+
+  def anyone_play
+    i = 1
+    while i <= 9
+      if i.odd?
+        self.player1_play
+        @board.align?
+      else
+        self.player2_play
+        @board.align?
+      end
+      @board.to_s
+      i += 1
+    end
+  end
 end
 
-binding.pry
+# binding.pry
