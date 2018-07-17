@@ -6,9 +6,9 @@ class Board
   attr_accessor :grid
 
   def initialize
-    col1 = [BoardCase.new, BoardCase.new, BoardCase.new]
-    col2 = [BoardCase.new, BoardCase.new, BoardCase.new]
-    col3 = [BoardCase.new, BoardCase.new, BoardCase.new]
+    col1 = [BoardCase.new(1), BoardCase.new(2), BoardCase.new(3)]
+    col2 = [BoardCase.new(4), BoardCase.new(5), BoardCase.new(6)]
+    col3 = [BoardCase.new(7), BoardCase.new(8), BoardCase.new(9)]
     @grid = [col1, col2, col3]
   end
 

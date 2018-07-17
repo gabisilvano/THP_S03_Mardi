@@ -5,12 +5,12 @@ require 'pry'
 class BoardCase
   attr_writer :value
 
-  def initialize
-    @value = ' '
+  def initialize(int)
+    @value = int
   end
 
   def value(value)
-    if @value == ' '
+    if @value.is_a? Integer
       # binding.pry
       until 'xo'.include?(value.downcase.to_s)
         # binding.pry
