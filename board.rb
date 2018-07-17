@@ -19,11 +19,11 @@ class Board
     puts '----------------------------------'
     puts '--         your board:          --'
     puts '----------------------------------' 
-    puts " #{@grid[0][0].to_s} | #{@grid[0][1].to_s} | #{@grid[0][2].to_s}"
-    puts '------------'
-    puts " #{@grid[1][0].to_s} | #{@grid[1][1].to_s} | #{@grid[1][2].to_s}"
-    puts '------------'
-    puts " #{@grid[2][0].to_s} | #{@grid[2][1].to_s} | #{@grid[2][2].to_s}"
+    puts "            #{@grid[0][0].to_s} | #{@grid[0][1].to_s} | #{@grid[0][2].to_s}"
+    puts '           ------------'
+    puts "            #{@grid[1][0].to_s} | #{@grid[1][1].to_s} | #{@grid[1][2].to_s}"
+    puts '           ------------'
+    puts "            #{@grid[2][0].to_s} | #{@grid[2][1].to_s} | #{@grid[2][2].to_s}"
     puts "\n \n ----------------------------------"
   end
 
@@ -40,8 +40,14 @@ class Board
 
   def align?
     win_arr = [
-                @col1.join, @col2.join, @col3.join, 
-                @grid[0].join, @grid[1].join, @grid[2].join, 
+                [@grid[0][0], @grid[0][1], @grid[0][2]].join, 
+                [@grid[1][0], @grid[1][1], @grid[1][2]].join, 
+                [@grid[2][0], @grid[2][1], @grid[2][2]].join, 
+
+                [@grid[0][0], @grid[1][0], @grid[2][0]].join,
+                [@grid[0][1], @grid[1][1], @grid[2][1]].join,
+                [@grid[0][2], @grid[1][2], @grid[2][2]].join,
+
                 [@grid[0][0], @grid[1][1], @grid[2][2]].join, 
                 [@grid[2][0], @grid[1][1], @grid[0][2]].join
               ]
