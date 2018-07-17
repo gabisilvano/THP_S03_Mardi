@@ -2,6 +2,14 @@ require 'pry'
 
 # Ceci est le plateau de jeu
 class Board
+  attr_accessor :grid
+
+  def initialize
+    col1 = [BoardCase.new, BoardCase.new, BoardCase.new]
+    col2 = [BoardCase.new, BoardCase.new, BoardCase.new]
+    col3 = [BoardCase.new, BoardCase.new, BoardCase.new]
+    @grid = [col1, col2, col3]
+  end
 end
 
 # Ceci est la gestion de chaque
@@ -14,18 +22,16 @@ class BoardCase
   end
 
   def value(value)
-    value.downcase!
-    if !'xo'.include?(value)
-      while !'xo'.include?(value)
-        puts "Ne pas jouer autre chose que 'x' ou 'o' "
-        print '|> '
+    if @value == ''
+      # binding.pry
+      until 'xo'.include?(value.downcase.to_s)
+        # binding.pry
+        puts "Ne pas jouer autre chose que 'x' ou 'o' \n |> "
         value = gets.chomp.to_s.downcase
       end
-    end
-    if @value == ''
-      @value = value 
+      @value = value.downcase
     else
-      puts "C'est moi où vous essayez de tricher ?"
+      puts "C'est moi ou vous essayez de tricher ?"
       @value
     end
   end
