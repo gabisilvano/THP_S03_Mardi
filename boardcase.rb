@@ -6,11 +6,11 @@ class BoardCase
   attr_writer :value
 
   def initialize
-    @value = ''
+    @value = ' '
   end
 
   def value(value)
-    if @value == ''
+    if @value == ' '
       # binding.pry
       until 'xo'.include?(value.downcase.to_s)
         # binding.pry
@@ -22,5 +22,9 @@ class BoardCase
       puts "C'est moi ou vous essayez de tricher ?"
       @value
     end
+  end
+
+  def to_s
+    @value
   end
 end
