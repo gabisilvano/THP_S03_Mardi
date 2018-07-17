@@ -55,11 +55,26 @@ class Game
       if i.odd?
         player1_play
         @board.align?
+        break if @board.won != 0
       else
         player2_play
         @board.align?
+        break if @board.won != 0
       end
       i += 1
+    end
+    # binding.pry
+    return @board.align?
+  end
+
+  def launch
+    anyone_play
+    if @board.won != 0
+      puts "le joueur #{@board.won} l'emporte !!!"
+      restart_game
+    else
+      puts "Personne n'a gagné... prévisible."
+      restart_game
     end
   end
 end

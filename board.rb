@@ -4,7 +4,7 @@ require_relative 'boardcase.rb'
 # Ceci est le plateau de jeu
 class Board
   attr_writer :grid, :col1, :col2, :col3
-  attr_accessor :abs, :ord
+  attr_accessor :abs, :ord, :won
 
   def initialize
     @col1 = [BoardCase.new, BoardCase.new, BoardCase.new]
@@ -13,6 +13,7 @@ class Board
     @grid = [@col1, @col2, @col3]
     @abs = -1
     @ord = -1
+    @won = 0
   end
 
   def to_s
@@ -53,11 +54,13 @@ class Board
               ]
     win_arr.each do |elem|
       if 'xxx' == elem
-        puts "joueur 1  win"
+        @won = 1
+        break
       elsif 'ooo' == elem
-        puts "joueur 2 win"
+        @won = 2
+        break
       else
-        puts "personne n'a gagné"
+        @won
       end
     end
   end
